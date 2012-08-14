@@ -29,10 +29,20 @@ class Resource
 
 	public function save()
 	{
-		$this->_attributes = $this->_http->post(
-			$this->_collectionPath,
-			$this->toArray()
-		);
+		if ($this->id)
+		{
+			$this->_attributes = $this->_http->patch(
+				$this->path(),
+				$this->toArray()
+			);
+		}
+		else
+		{
+			$this->_attributes = $this->_http->post(
+				$this->_collectionPath,
+				$this->toArray()
+			);
+		}
 	}
 
 	// Attribute access.

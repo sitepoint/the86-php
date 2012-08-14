@@ -8,6 +8,10 @@ class Http
 	{
 	}
 
+	public function patch($path, $attributes)
+	{
+	}
+
 	public function post($path, $attributes)
 	{
 	}

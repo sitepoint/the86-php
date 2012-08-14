@@ -4,12 +4,18 @@ namespace The86;
 
 class SiteTest extends \PHPUnit_Framework_TestCase
 {
+	public function setUp()
+	{
+		$path = "/api/v1/sites";
+		$this->http = $this->getMock('Http', array('get', 'patch', 'post'));
+		$this->site = new Site($this->http, $path, array('slug' => 'example'));
+	}
+
 	public function testAttributeAccess()
 	{
-		$site = new Site($this->_http, "", array('slug' => 'example.org'));
-		$this->assertEquals($site->slug, 'example.org');
-		$site->slug = 'example.com';
-		$this->assertEquals($site->toArray(), array('slug' => 'example.com'));
+		$this->assertEquals('example', $this->site->slug);
+		$this->site->slug = 'example.com';
+		$this->assertEquals(array('slug' => 'example.com'), $this->site->toArray());
 	}
 
 	public function testHasManyConversations()
@@ -19,24 +25,15 @@ class SiteTest extends \PHPUnit_Framework_TestCase
 			array('id' => 4),
 		);
 
-		$path = "/api/v1/sites/example/conversations";
-		$http = $this->getMock('Http', array('get'));
-		$http->expects($this->once())
+		$this->http->expects($this->once())
 			->method("get")
-			->with($path)
+			->with("/api/v1/sites/example/conversations")
 			->will($this->returnValue($response));
 
-		$site = new Site($http, "/api/v1/sites", array('slug' => 'example'));
-		$conversations = $site->conversations()->toArray();
+		$conversations = $this->site->conversations()->toArray();
 
-		$this->assertEquals(count($conversations), 2);
-		$this->assertEquals($conversations[0]['id'], 2);
-		$this->assertEquals($conversations[1]['id'], 4);
-	}
-
-	// ----------
-
-	private function _http()
-	{
+		$this->assertEquals(2, count($conversations));
+		$this->assertEquals(2, $conversations[0]['id']);
+		$this->assertEquals(4, $conversations[1]['id']);
 	}
 }
