@@ -17,6 +17,6 @@ class Site extends Resource
 	 */
 	public function conversations()
 	{
-		return $this->_collection("conversations");
+		return $this->_collection("conversations", "The86\Conversation");
 	}
 }

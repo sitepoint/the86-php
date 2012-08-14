@@ -7,6 +7,7 @@ foreach (array(
 	"Resource",
 	"ResourceCollection",
 	"Conversation",
+	"Post",
 	"Site",
 	"User",
 ) as $name) {

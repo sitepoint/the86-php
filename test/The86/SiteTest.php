@@ -30,10 +30,12 @@ class SiteTest extends \PHPUnit_Framework_TestCase
 			->with("/api/v1/sites/example/conversations")
 			->will($this->returnValue($response));
 
-		$conversations = $this->site->conversations()->toArray();
+		$conversations = $this->site->conversations();
 
 		$this->assertEquals(2, count($conversations));
-		$this->assertEquals(2, $conversations[0]['id']);
-		$this->assertEquals(4, $conversations[1]['id']);
+
+		$this->assertInstanceOf("The86\Conversation", $conversations[0]);
+		$this->assertEquals(2, $conversations[0]->id);
+		$this->assertEquals(4, $conversations[1]->id);
 	}
 }

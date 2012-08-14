@@ -27,10 +27,11 @@ class ConversationTest extends \PHPUnit_Framework_TestCase
 			->with("/api/v1/sites/example/conversations/16/posts")
 			->will($this->returnValue($response));
 
-		$posts = $this->conversation->posts()->toArray();
+		$posts = $this->conversation->posts();
 
+		$this->assertEquals(2, $posts->count());
 		$this->assertEquals(2, count($posts));
-		$this->assertEquals(2, $posts[0]['id']);
-		$this->assertEquals(4, $posts[1]['id']);
+		$this->assertEquals(2, $posts[0]->id);
+		$this->assertEquals(4, $posts[1]->id);
 	}
 }

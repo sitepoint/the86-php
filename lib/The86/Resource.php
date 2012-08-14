@@ -64,11 +64,12 @@ class Resource
 
 	// Collections.
 
-	protected function _collection($name)
+	protected function _collection($name, $className)
 	{
 		return new ResourceCollection(
 			$this->_http,
-			implode("/", array($this->path(), $name))
+			implode("/", array($this->path(), $name)),
+			$className
 		);
 	}
 }
