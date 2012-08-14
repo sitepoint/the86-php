@@ -6,45 +6,65 @@ class Resource
 {
 	private $_attributes = array();
 	private $_http;
-	private $_collectionPath;
+	private $_parent;
 
-	public function __construct($http, $collectionPath, $attributes)
+	public function __construct($http, $attributes = array(), $parent = null)
 	{
-		$this->_attributes = $attributes;
 		$this->_http = $http;
-		$this->_collectionPath = $collectionPath;
+		$this->_attributes = $attributes;
+		$this->_parent = $parent;
 	}
 
-	private function path()
+	// -----------
+
+	public static function collectionPath($parent)
 	{
-		return $this->_collectionPath . "/" . $this->pathParameter();
+		if ($parent)
+		{
+			return $parent->resourcePath() . "/" . static::$path;
+		}
+		else
+		{
+			return static::$path;
+		}
 	}
 
-	protected function pathParameter()
+	// -----------
+
+	public function resourcePath()
 	{
-		return $this->id;
+		return implode("/", array(
+			static::collectionPath($this->_parent),
+			$this->pathParameter()
+		));
 	}
 
-	// Persistence.
+	public function attributes()
+	{
+		return $this->_attributes;
+	}
+
+	// -----------
 
 	public function save()
 	{
 		if ($this->id)
 		{
 			$this->_attributes = $this->_http->patch(
-				$this->path(),
-				$this->toArray()
+				$this->resourcePath(),
+				$this->attributes()
 			);
 		}
 		else
 		{
 			$this->_attributes = $this->_http->post(
-				$this->_collectionPath,
-				$this->toArray()
+				static::collectionPath($this->_parent),
+				$this->attributes()
 			);
 		}
 	}
 
+	// -----------
 	// Attribute access.
 
 	public function __get($attribute)
@@ -57,19 +77,20 @@ class Resource
 		return $this->_attributes[$attribute] = $value;
 	}
 
-	public function toArray()
+	// -----------
+
+	protected function pathParameter()
 	{
-		return $this->_attributes;
+		return $this->id;
 	}
 
-	// Collections.
-
-	protected function _collection($name, $className)
+	protected function collection($name, $className)
 	{
 		return new ResourceCollection(
 			$this->_http,
-			implode("/", array($this->path(), $name)),
-			$className
+			$className::collectionPath($this),
+			$className,
+			$this
 		);
 	}
 }

@@ -10,21 +10,23 @@ class UserTest extends \PHPUnit_Framework_TestCase
 	public function setUp()
 	{
 		$this->http = $this->getMock('Http', array('get', 'patch', 'post'));
-		$this->user = new User($this->http, "/api/v1/users", array('name' => 'John Citizen'));
+		$this->user = new User($this->http, array('name' => 'John Citizen'));
 	}
+
+	// -----------
 
 	public function testAttributeAccess()
 	{
 		$this->assertEquals('John Citizen', $this->user->name);
 		$this->user->name = 'Another';
-		$this->assertEquals(array('name' => 'Another'), $this->user->toArray());
+		$this->assertEquals(array('name' => 'Another'), $this->user->attributes());
 	}
 
 	public function testSaveToCreate()
 	{
 		$this->http->expects($this->once())
 			->method("post")
-			->with("/api/v1/users")
+			->with("users")
 			->will($this->returnValue(array('id' => 4)));
 
 		$this->user->save();
@@ -40,7 +42,7 @@ class UserTest extends \PHPUnit_Framework_TestCase
 
 		$this->http->expects($this->once())
 			->method("patch")
-			->with("/api/v1/users/8")
+			->with("users/8")
 			->will($this->returnValue($response));
 
 		$this->user->id = 8;

@@ -4,8 +4,10 @@ namespace The86;
 
 class Conversation extends Resource
 {
+	public static $path = 'conversations';
+
 	public function posts()
 	{
-		return $this->_collection("posts", "The86\Post");
+		return $this->collection("posts", "The86\Post");
 	}
 }

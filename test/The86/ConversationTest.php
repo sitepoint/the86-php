@@ -12,8 +12,12 @@ class ConversationTest extends \PHPUnit_Framework_TestCase
 		$path = "/api/v1/sites/example/conversations";
 		$attributes = array('id' => 16);
 		$this->http = $this->getMock('Http', array('get', 'patch', 'post'));
-		$this->conversation = new Conversation($this->http, $path, $attributes);
+
+		$site = new Site($this->http, array('slug' => 'example'));
+		$this->conversation = new Conversation($this->http, $attributes, $site);
 	}
+
+	// -----------
 
 	public function testHasManyPosts()
 	{
@@ -24,7 +28,7 @@ class ConversationTest extends \PHPUnit_Framework_TestCase
 
 		$this->http->expects($this->once())
 			->method("get")
-			->with("/api/v1/sites/example/conversations/16/posts")
+			->with("sites/example/conversations/16/posts")
 			->will($this->returnValue($response));
 
 		$posts = $this->conversation->posts();

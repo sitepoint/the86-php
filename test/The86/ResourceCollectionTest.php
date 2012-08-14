@@ -5,17 +5,18 @@ namespace The86;
 class ResourceCollectionTest extends \PHPUnit_Framework_TestCase
 {
 	private $http;
-	private $path;
 	private $collection;
 
 	public function setUp()
 	{
 		$this->http = $this->getMock("Http", array('get'));
-		$this->path = "/api/v1/sites";
+		$path = "sites";
+
 		$this->collection = new ResourceCollection(
 			$this->http,
-			$this->path,
-			"The86\Site"
+			"sites",
+			"The86\Site",
+			null
 		);
 
 		$this->response = array(
@@ -25,12 +26,14 @@ class ResourceCollectionTest extends \PHPUnit_Framework_TestCase
 
 		$this->http->expects($this->once())
 			->method("get")
-			->with($this->path)
+			->with("sites")
 			->will($this->returnValue(array(
 				array('id' => 2),
 				array('id' => 4),
 			)));
 	}
+
+	// -----------
 
 	public function testIteration()
 	{

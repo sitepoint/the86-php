@@ -8,13 +8,40 @@ class ResourceCollection
 	private $_className;
 	private $_http;
 	private $_iterator;
-	private $_path;
+	private $_parent;
+	private $_pathName;
+	private $_records;
 
-	public function __construct($http, $path, $className)
+	public function __construct($http, $pathName, $className, $parent, $records = null)
 	{
 		$this->_http = $http;
-		$this->_path = $path;
+		$this->_pathName = $pathName;
 		$this->_className = $className;
+		$this->_parent = $parent;
+		$this->_records = $records;
+	}
+
+	// -----------
+
+	public function build($attributes = array())
+	{
+		return new $this->_className(
+			$this->_http,
+			$attributes,
+			$this->_parent
+		);
+	}
+
+	public function create($attributes = array())
+	{
+		$resource = $this->build($attributes);
+		$resource->save();
+		return $resource;
+	}
+
+	public function find($id)
+	{
+		return $this->build(array('id' => $id));
 	}
 
 	// -----------------
@@ -24,8 +51,8 @@ class ResourceCollection
 	{
 		if (!isset($this->_iterator))
 			$this->_iterator = new \ArrayObject(array_map(
-				array($this, "_toResource"),
-				$this->_http->get($this->_path)
+				array($this, "build"),
+				$this->_fetch()
 			));
 
 		return $this->_iterator;
@@ -49,11 +76,8 @@ class ResourceCollection
 
 	// -----------
 
-	/**
-	 * Turn a bare array into a typed resource object.
-	 */
-	private function _toResource($array)
+	private function _fetch()
 	{
-		return new $this->_className($this->_http, $this->_path, $array);
+		return $this->_http->get($this->_pathName);
 	}
 }

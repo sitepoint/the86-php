@@ -6,16 +6,17 @@ class SiteTest extends \PHPUnit_Framework_TestCase
 {
 	public function setUp()
 	{
-		$path = "/api/v1/sites";
 		$this->http = $this->getMock('Http', array('get', 'patch', 'post'));
-		$this->site = new Site($this->http, $path, array('slug' => 'example'));
+		$this->site = new Site($this->http, array('slug' => 'example'));
 	}
+
+	// -----------
 
 	public function testAttributeAccess()
 	{
 		$this->assertEquals('example', $this->site->slug);
 		$this->site->slug = 'example.com';
-		$this->assertEquals(array('slug' => 'example.com'), $this->site->toArray());
+		$this->assertEquals(array('slug' => 'example.com'), $this->site->attributes());
 	}
 
 	public function testHasManyConversations()
@@ -27,7 +28,7 @@ class SiteTest extends \PHPUnit_Framework_TestCase
 
 		$this->http->expects($this->once())
 			->method("get")
-			->with("/api/v1/sites/example/conversations")
+			->with("sites/example/conversations")
 			->will($this->returnValue($response));
 
 		$conversations = $this->site->conversations();
