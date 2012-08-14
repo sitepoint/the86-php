@@ -5,10 +5,10 @@ namespace The86;
 class ResourceCollection
 	implements \IteratorAggregate, \ArrayAccess, \Countable
 {
+	private $_className;
 	private $_http;
 	private $_iterator;
 	private $_path;
-	private $_records;
 
 	public function __construct($http, $path, $className)
 	{
@@ -23,14 +23,16 @@ class ResourceCollection
 	public function getIterator()
 	{
 		if (!isset($this->_iterator))
-		{
 			$this->_iterator = new \ArrayObject(array_map(
 				array($this, "_toResource"),
 				$this->_http->get($this->_path)
 			));
-		}
+
 		return $this->_iterator;
 	}
+
+	// ---------
+	// Countable
 
 	public function count()
 	{
@@ -47,18 +49,11 @@ class ResourceCollection
 
 	// -----------
 
-	public function toArray()
-	{
-		$this->getIterator()->getArrayCopy();
-	}
-
 	/**
 	 * Turn a bare array into a typed resource object.
 	 */
 	private function _toResource($array)
 	{
-		$class = $this->_className;
-		$collectionPath = "TODO";
-		return new $class($this->_http, $collectionPath, $array);
+		return new $this->_className($this->_http, $this->_path, $array);
 	}
 }
