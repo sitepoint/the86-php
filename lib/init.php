@@ -3,7 +3,9 @@
 namespace The86;
 
 foreach (array(
+	"Http",
 	"Resource",
+	"ResourceCollection",
 	"Site",
 	"User",
 ) as $name) {
