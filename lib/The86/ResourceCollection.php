@@ -9,13 +9,13 @@ class ResourceCollection
 	private $_http;
 	private $_iterator;
 	private $_parent;
-	private $_pathName;
+	private $_path;
 	private $_records;
 
-	public function __construct($http, $pathName, $className, $parent, $records = null)
+	public function __construct($http, $path, $className, $parent, $records = null)
 	{
 		$this->_http = $http;
-		$this->_pathName = $pathName;
+		$this->_path = $path;
 		$this->_className = $className;
 		$this->_parent = $parent;
 		$this->_records = $records;
@@ -78,6 +78,6 @@ class ResourceCollection
 
 	private function _fetch()
 	{
-		return $this->_http->get($this->_pathName);
+		return $this->_http->get($this->_path);
 	}
 }
