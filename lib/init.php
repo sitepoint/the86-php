@@ -6,6 +6,7 @@ foreach (array(
 	"Http",
 	"Resource",
 	"ResourceCollection",
+	"ApiRoot",
 	"Conversation",
 	"Post",
 	"Site",
