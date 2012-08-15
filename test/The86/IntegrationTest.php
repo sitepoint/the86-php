@@ -32,6 +32,24 @@ class IntegrationTest extends \PHPUnit_Framework_TestCase
 		$conversations->getIterator();
 	}
 
+	public function testListConversationsWithPostsSince()
+	{
+		$this->http->expects($this->once())
+			->method('get')
+			->with("sites/example/conversations?posts_since=time")
+			->will($this->returnValue(array()));
+
+		$conversations = $this->root
+			->sites()
+			->build(array('slug' => 'example'))
+			->conversations()
+			->withParameters(array('posts_since' => 'time'));
+
+		$this->assertInstanceOf("The86\ResourceCollection", $conversations);
+
+		$conversations->getIterator();
+	}
+
 	public function testCreateUser()
 	{
 		$this->http->expects($this->once())

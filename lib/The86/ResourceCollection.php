@@ -8,6 +8,7 @@ class ResourceCollection
 	private $_className;
 	private $_http;
 	private $_iterator;
+	private $_parameters;
 	private $_parent;
 	private $_path;
 	private $_records;
@@ -44,6 +45,13 @@ class ResourceCollection
 		return $this->build(array('id' => $id))->load();
 	}
 
+	public function withParameters($parameters)
+	{
+		$collection = clone($this);
+		$collection->_parameters = $parameters;
+		return $collection;
+	}
+
 	// -----------------
 	// IteratorAggregate
 
@@ -78,6 +86,10 @@ class ResourceCollection
 
 	private function _fetch()
 	{
-		return $this->_http->get($this->_path);
+		$path = $this->_parameters ?
+			sprintf('%s?%s', $this->_path, http_build_query($this->_parameters)) :
+			$this->_path;
+
+		return $this->_http->get($path);
 	}
 }
