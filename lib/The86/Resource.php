@@ -46,6 +46,14 @@ class Resource
 
 	// -----------
 
+	public function load()
+	{
+		$this->_attributes = $this->_http->get(
+			$this->resourcePath()
+		);
+		return $this;
+	}
+
 	public function save()
 	{
 		if ($this->id)

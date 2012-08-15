@@ -41,7 +41,7 @@ class ResourceCollection
 
 	public function find($id)
 	{
-		return $this->build(array('id' => $id));
+		return $this->build(array('id' => $id))->load();
 	}
 
 	// -----------------
