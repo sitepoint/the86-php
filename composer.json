@@ -2,7 +2,7 @@
     "name": "the86-php",
     "type": "library",
     "description": "The86 PHP Client",
-    "keywords": ["Guzzle"],
+    "keywords": ["the86"],
     "authors": [
         {
             "name": "Paul Annesley",
