@@ -15,9 +15,8 @@ class The86Client extends Client
      * Factory method to create a new The86Client
      *
      * @param array|Collection $config Configuration data. Array keys:
-     *    base_url - Base URL, composed of scheme, domain, path by default.
+     *    base_url - Base URL, composed of scheme and domain by default.
 	 *    scheme   - https, perhaps http for dev/testing.
-	 *    path     - The base API path, defaults to /api/v1.
 	 *  * username - API username.
 	 *  * password - API password.
      *
@@ -26,8 +25,7 @@ class The86Client extends Client
     public static function factory($config = array())
     {
 		$default = array(
-			'base_url' => '{scheme}://{domain}{path}',
-			'path' => '/api/v1',
+			'base_url' => '{scheme}://{domain}/api/v1/',
 			'scheme' => 'https',
 		);
         $required = array('domain', 'username', 'password');
