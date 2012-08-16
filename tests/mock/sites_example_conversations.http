@@ -1,0 +1,15 @@
+HTTP/1.1 200 OK
+Cache-Control: must-revalidate, private, max-age=0
+Content-Type: application/json; charset=utf-8
+Date: Thu, 16 Aug 2012 04:51:57 GMT
+Etag: "13046a3b1be53ffedbbf246d4b7c4fad"
+Server: thin 1.4.1 codename Chromeo
+Strict-Transport-Security: max-age=31536000
+X-Rack-Cache: miss
+X-Request-Id: 06eab529b048dbf3a5bf914a503b2056
+X-Runtime: 0.565417
+X-Ua-Compatible: IE=Edge,chrome=1
+transfer-encoding: chunked
+Connection: keep-alive
+
+[{"id":51,"created_at":"2012-08-15T00:30:30Z","updated_at":"2012-08-16T04:51:22Z","bumped_at":"2012-08-16T04:51:22Z","posts":[{"id":249,"content":"I have a client that wants a \"search this page\" button on one of the pages of his website.","is_original":true,"in_reply_to_id":null,"created_at":"2012-08-15T00:30:30Z","updated_at":"2012-08-15T00:30:30Z","content_html":"<p>I have a client that wants a \"search this page\" button on one of the pages of his website.</p>","user":{"id":5253,"name":"m","url":"https://the86.example.org/api/v1/users/53"}}]},{"id":5253,"created_at":"2012-08-15T05:19:37Z","updated_at":"2012-08-16T04:08:04Z","bumped_at":"2012-08-16T04:08:04Z","posts":[{"id":256,"content":"I am very keen to use ajax. (i\"m, a first time user)","is_original":true,"in_reply_to_id":null,"created_at":"2012-08-15T05:19:37Z","updated_at":"2012-08-15T05:19:37Z","content_html":"<p>I am very keen to use ajax. (i\"m, a first time user)</p>","user":{"id":1254,"name":"mk","url":"https://the86.example.org/api/v1/users/1254"}}]}]

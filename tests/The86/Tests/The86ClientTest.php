@@ -24,4 +24,17 @@ class The86ClientTest extends \Guzzle\Tests\GuzzleTestCase
 	{
 		The86Client::factory(array());
 	}
+
+	public function testListingConversations()
+	{
+		$client = $this->getServiceBuilder()->get('client');
+		$this->setMockResponse($client, "sites_example_conversations.http");
+		$request = $client->get('sites/example/conversations');
+		$response = $request->send();
+
+		$this->assertEquals(200, $response->getStatusCode());
+		$data = json_decode($response->getBody());
+		$this->assertEquals(2, count($data));
+		$this->assertEquals(51, $data[0]->id);
+	}
 }
