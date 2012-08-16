@@ -1,1 +1,5 @@
+# Test libraries: PHPUnit and its dependencies.
 /testlib
+
+# Dependencies installed by composer.
+/vendor
