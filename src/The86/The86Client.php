@@ -8,28 +8,46 @@ use Guzzle\Service\Description\ServiceDescription;
 
 class The86Client extends Client
 {
+	protected $username;
+	protected $password;
+
     /**
      * Factory method to create a new The86Client
      *
      * @param array|Collection $config Configuration data. Array keys:
-     *    base_url - Base URL of web service
+     *    base_url - Base URL, composed of scheme, domain, path by default.
+	 *    scheme   - https, perhaps http for dev/testing.
+	 *    path     - The base API path, defaults to /api/v1.
+	 *  * username - API username.
+	 *  * password - API password.
      *
      * @return The86Client
-     *
-     * @TODO update factory method and docblock for parameters
      */
-    public static function factory($config)
+    public static function factory($config = array())
     {
-        $default = array();
-        $required = array('base_url');
+		$default = array(
+			'base_url' => '{scheme}://{domain}{path}',
+			'path' => '/api/v1',
+			'scheme' => 'https',
+		);
+        $required = array('domain', 'username', 'password');
         $config = Inspector::prepareConfig($config, $default, $required);
 
-        $client = new self($config->get('base_url'));
-        $client->setConfig($config);
+		$client = new self(
+			$config->get('base_url'),
+			$config->get('username'),
+			$config->get('password')
+		);
 
-        // Uncomment the following two lines to use an XML service description
-        // $client->setDescription(ServiceDescription::factory(__DIR__ . DIRECTORY_SEPARATOR . 'client.xml'));
+        $client->setConfig($config);
 
         return $client;
     }
+
+	public function __construct($baseUrl, $username, $password)
+	{
+		parent::__construct($baseUrl);
+		$this->username = $username;
+		$this->password = $password;
+	}
 }
