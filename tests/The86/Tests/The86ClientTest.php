@@ -3,8 +3,9 @@
 namespace The86\Tests;
 
 use The86\The86Client;
+use The86\TestCase;
 
-class The86ClientTest extends \Guzzle\Tests\GuzzleTestCase
+class The86ClientTest extends TestCase
 {
     public function testBuilderCreatesClient()
     {
