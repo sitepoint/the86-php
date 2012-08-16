@@ -34,7 +34,7 @@ $loader = require_once dirname(__DIR__) . DIRECTORY_SEPARATOR . 'vendor' . DIREC
 // Register services with the GuzzleTestCase
 Guzzle\Tests\GuzzleTestCase::setMockBasePath(__DIR__ . DIRECTORY_SEPARATOR . 'mock');
 
-Guzzle\Tests\GuzzleTestCase::setServiceBuilder(Guzzle\Service\ServiceBuilder::factory(array(
+Guzzle\Tests\GuzzleTestCase::setServiceBuilder(Guzzle\Service\Builder\ServiceBuilder::factory(array(
     'client' => array(
         'class' => 'The86\The86Client'
     )
