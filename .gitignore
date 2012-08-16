@@ -3,3 +3,6 @@
 
 # Dependencies installed by composer.
 /vendor
+
+# PHPUnit configuration: copy from phpunit.xml.dist
+/phpunit.xml
