@@ -13,20 +13,44 @@ class ListConversationsTest extends TestCase
 	public function setUp()
 	{
 		$this->client = $this->getServiceBuilder()->get('client');
-		$this->command = $this->client->getCommand('ListConversations', array('site' => 'example'));
+		$this->setMockResponse($this->client, "sites_example_conversations.http");
 	}
 
 	public function testListingConversations()
 	{
-		$this->setMockResponse($this->client, "sites_example_conversations.http");
+		$command = $this->client->getCommand('ListConversations', array(
+			'site' => 'example',
+		));
 
-		$result = $this->command->execute();
+		$result = $command->execute();
 
 		$request = $this->getOnlyMockedRequest();
-		$this->assertEquals('/api/v1/sites/example/conversations', $request->getPath());
+		// NOTE: the ?parameters= is a bug in Guzzle's UriTemplate
+		// implementation fixed by https://github.com/guzzle/guzzle/pull/123
+		$this->assertRegExp(
+			'#^/api/v1/sites/example/conversations(\?parameters=)?$#',
+			$request->getResource()
+		);
 
 		// JSON-decoded response data.
 		$this->assertEquals(2, count($result));
 		$this->assertEquals(51, $result[0]['id']);
+	}
+
+	public function testPostsSince()
+	{
+		$command = $this->client->getCommand('ListConversations', array(
+			'site' => 'test',
+			'parameters' => array(
+				'posts_since' => 'time',
+			),
+		));
+
+		$result = $command->execute();
+
+		$this->assertEquals(
+			'/api/v1/sites/test/conversations?posts_since=time',
+			$this->getOnlyMockedRequest()->getResource()
+		);
 	}
 }
