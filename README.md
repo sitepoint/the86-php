@@ -14,6 +14,8 @@ Usage
 -----
 
 ```php
+<?php
+
 // Get a configured client.
 $client = The86\The86Client::factory(array(
   'domain' => 'the86.example.org',
