@@ -35,18 +35,15 @@ class ListConversationsTest extends TestCase
 
 	public function testPostsSince()
 	{
-		$command = $this->client()->getCommand('ListConversations', array(
+		$this->client()->getCommand('ListConversations', array(
 			'site' => 'test',
 			'parameters' => array(
 				'posts_since' => 'time',
 			),
-		));
+		))->execute();
 
-		$result = $command->execute();
-
-		$this->assertEquals(
-			'/api/v1/sites/test/conversations?posts_since=time',
-			$this->getOnlyMockedRequest()->getResource()
-		);
+        $this->assertRequestPath(
+            '/api/v1/sites/test/conversations?posts_since=time'
+        );
 	}
 }

@@ -14,16 +14,11 @@ class ShowUserTest extends TestCase
 
     public function testShowingUser()
     {
-        $command = $this->client()->getCommand('ShowUser', array(
+        $result = $this->client()->getCommand('ShowUser', array(
             'user' => 1024
-        ));
+        ))->execute();
 
-        $result = $command->execute();
-
-        $request = $this->getOnlyMockedRequest();
-
-        $this->assertEquals('/api/v1/users/1024', $request->getResource());
-
+        $this->assertRequestPath('/api/v1/users/1024');
         $this->assertEquals(1024, $result['id']);
         $this->assertEquals('John Citizen', $result['name']);
     }
