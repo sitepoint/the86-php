@@ -1,0 +1,12 @@
+HTTP/1.1 201 Created
+Content-Type: application/json; charset=utf-8
+X-UA-Compatible: IE=Edge
+ETag: "4bf3e4972ab6b89057470ec9d71766ff"
+Cache-Control: max-age=0, private, must-revalidate
+X-Request-Id: b9e5ef014c7c7778d92178ef4ff0b21b
+X-Runtime: 3.469419
+Content-Length: 251
+Connection: keep-alive
+Server: thin 1.4.1 codename Chromeo
+
+{"id":4096,"content":"Hello!","is_original":false,"in_reply_to_id":null,"created_at":"2012-08-20T03:43:32Z","updated_at":"2012-08-20T03:43:32Z","content_html":"<p>Hello!</p>","user":{"id":48,"name":"John Citizen","url":"http://the86.example.org/api/v1/users/48"}}
