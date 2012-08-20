@@ -18,7 +18,7 @@ class ShowUserTest extends TestCase
             'user' => 1024
         ))->execute();
 
-        $this->assertRequestPath('/api/v1/users/1024');
+        $this->assertRequest('GET', '/api/v1/users/1024');
         $this->assertEquals(1024, $result['id']);
         $this->assertEquals('John Citizen', $result['name']);
     }

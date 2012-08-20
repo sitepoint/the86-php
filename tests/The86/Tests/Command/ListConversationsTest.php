@@ -42,7 +42,8 @@ class ListConversationsTest extends TestCase
 			),
 		))->execute();
 
-        $this->assertRequestPath(
+        $this->assertRequest(
+            'GET',
             '/api/v1/sites/test/conversations?posts_since=time'
         );
 	}
