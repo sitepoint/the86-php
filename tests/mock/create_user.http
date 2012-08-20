@@ -1,0 +1,12 @@
+HTTP/1.1 201 Created
+Content-Type: application/json; charset=utf-8
+X-UA-Compatible: IE=Edge
+ETag: "1fca587136512e84cdc30d679453a21d"
+Cache-Control: max-age=0, private, must-revalidate
+X-Request-Id: 4c0c5434e980d4266194990eeeaf8cbf
+X-Runtime: 0.012459
+Content-Length: 261
+Connection: keep-alive
+Server: thin 1.4.1 codename Chromeo
+
+{"id":2048,"name":"John Citizen","url":"http://localhost:3000/api/v1/users/2048","access_tokens":[{"api_client_name":"test","created_at":"2012-08-20T03:09:13Z","id":4096,"token":"Gbit5a7iy-nOVdrt-6U8B9nUA4z90hCpcesRSEU38y4","updated_at":"2012-08-20T03:09:13Z"}]}
