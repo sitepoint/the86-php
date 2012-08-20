@@ -7,18 +7,14 @@ use The86\TestCase;
 
 class ListConversationsTest extends TestCase
 {
-	private $client;
-	private $command;
-
 	public function setUp()
 	{
-		$this->client = $this->getServiceBuilder()->get('client');
-		$this->setMockResponse($this->client, "sites_example_conversations.http");
+		$this->setMockResponse($this->client(), "sites_example_conversations.http");
 	}
 
 	public function testListingConversations()
 	{
-		$command = $this->client->getCommand('ListConversations', array(
+		$command = $this->client()->getCommand('ListConversations', array(
 			'site' => 'example',
 		));
 
@@ -39,7 +35,7 @@ class ListConversationsTest extends TestCase
 
 	public function testPostsSince()
 	{
-		$command = $this->client->getCommand('ListConversations', array(
+		$command = $this->client()->getCommand('ListConversations', array(
 			'site' => 'test',
 			'parameters' => array(
 				'posts_since' => 'time',

@@ -4,7 +4,17 @@ namespace The86;
 
 class TestCase extends \Guzzle\Tests\GuzzleTestCase
 {
-	public function getOnlyMockedRequest()
+    private $client;
+
+    protected function client()
+    {
+        if (!$this->client)
+            $this->client = $this->getServiceBuilder()->get('client');
+
+        return $this->client;
+    }
+
+	protected function getOnlyMockedRequest()
 	{
 		$requests = $this->getMockedRequests();
 		$count = count($requests);
