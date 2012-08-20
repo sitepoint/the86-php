@@ -1,0 +1,12 @@
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+X-UA-Compatible: IE=Edge
+ETag: "ebccd1e0fe2ad2fcc0bace45611e7563"
+Cache-Control: max-age=0, private, must-revalidate
+X-Request-Id: f7f76c675864baacd0f3082baf6dc0f8
+X-Runtime: 0.007140
+Content-Length: 76
+Connection: keep-alive
+Server: thin 1.4.1 codename Chromeo
+
+{"id":1024,"name":"John Citizen","url":"http://the86.example.org/api/v1/users/1024"}
