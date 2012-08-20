@@ -20,7 +20,7 @@ Usage
 $client = The86\The86Client::factory(array(
   'domain' => 'the86.example.org',
   'username' => 'your-site-username',
-  'password' => 'your-site'password',
+  'password' => 'your-site-password',
 ));
 
 // List all conversations for a site.
