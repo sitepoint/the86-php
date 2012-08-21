@@ -38,4 +38,17 @@ class TestCase extends \Guzzle\Tests\GuzzleTestCase
         $this->assertEquals($method, $request->getMethod());
         $this->assertEquals($path, $request->getResource());
     }
+
+    protected function assertBasicAuth($username, $password, $request = null)
+    {
+        if (!$request) $request = $this->getOnlyMockedRequest();
+
+        if (!($header = $request->getHeader('Authorization')))
+            $this->fail("Missing Authorization header.");
+
+        $this->assertEquals(
+            'Basic ' . base64_encode("$username:$password"),
+            $header->__toString()
+        );
+    }
 }
