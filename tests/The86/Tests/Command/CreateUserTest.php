@@ -21,6 +21,8 @@ class CreateUserTest extends TestCase
         ))->execute();
 
         $this->assertRequest('POST', '/api/v1/users');
+        $this->assertBasicAuth('auser', 'apass');
+
         $this->assertEquals(2048, $result['id']);
         $this->assertEquals('John Citizen', $result['name']);
         $this->assertEquals(
