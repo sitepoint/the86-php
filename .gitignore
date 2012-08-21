@@ -6,3 +6,6 @@
 
 # PHPUnit configuration: copy from phpunit.xml.dist
 /phpunit.xml
+
+# ctags index.
+/tags
