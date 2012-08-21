@@ -4,7 +4,7 @@ namespace The86;
 
 use Guzzle\Service\Client;
 use Guzzle\Service\Inspector;
-use Guzzle\Service\Description\ServiceDescription;
+use Guzzle\Http\Plugin\CurlAuthPlugin;
 
 class The86Client extends Client
 {
@@ -39,13 +39,18 @@ class The86Client extends Client
 
         $client->setConfig($config);
 
+        $client->addSubscriber(
+            new CurlAuthPlugin(
+                $config->get('username'),
+                $config->get('password')
+            )
+        );
+
         return $client;
     }
 
-    public function __construct($baseUrl, $username, $password)
+    public function __construct($baseUrl)
     {
         parent::__construct($baseUrl);
-        $this->username = $username;
-        $this->password = $password;
     }
 }

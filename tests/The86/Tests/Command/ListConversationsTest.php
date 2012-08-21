@@ -44,6 +44,7 @@ class ListConversationsTest extends TestCase
             ),
         ))->execute();
 
+        $this->assertBasicAuth('auser', 'apass');
         $this->assertRequest(
             'GET',
             '/api/v1/sites/test/conversations?posts_since=time'
