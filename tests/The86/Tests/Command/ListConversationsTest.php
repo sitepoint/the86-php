@@ -28,6 +28,8 @@ class ListConversationsTest extends TestCase
 			$request->getResource()
 		);
 
+		$this->assertBasicAuth('auser', 'apass', $request);
+
 		// JSON-decoded response data.
 		$this->assertEquals(2, count($result));
 		$this->assertEquals(51, $result[0]['id']);

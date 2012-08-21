@@ -13,5 +13,10 @@ class ListConversations extends \Guzzle\Service\Command\AbstractCommand
 		$this->request = $this->client->get(
 			array('sites/{site}/conversations{?parameters*}', $this->data)
 		);
+
+        $this->request->setAuth(
+            $this->client->getConfig('username'),
+            $this->client->getConfig('password')
+        );
 	}
 }
