@@ -7,11 +7,11 @@ namespace The86\Command;
  */
 class CreateUser extends \Guzzle\Service\Command\AbstractCommand
 {
-	public function build()
-	{
+    public function build()
+    {
         $this->request = $this->client->post(
             'users',
             $this->data['attributes']
-		);
-	}
+        );
+    }
 }

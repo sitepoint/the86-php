@@ -8,15 +8,15 @@ namespace The86\Command;
  */
 class ListConversations extends \Guzzle\Service\Command\AbstractCommand
 {
-	public function build()
-	{
-		$this->request = $this->client->get(
-			array('sites/{site}/conversations{?parameters*}', $this->data)
-		);
+    public function build()
+    {
+        $this->request = $this->client->get(
+            array('sites/{site}/conversations{?parameters*}', $this->data)
+        );
 
         $this->request->setAuth(
             $this->client->getConfig('username'),
             $this->client->getConfig('password')
         );
-	}
+    }
 }

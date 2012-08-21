@@ -9,11 +9,11 @@ namespace The86\Command;
  */
 class CreatePost extends \Guzzle\Service\Command\AbstractCommand
 {
-	public function build()
-	{
+    public function build()
+    {
         $this->request = $this->client->post(
             array('sites/{site}/conversations/{conversation}/posts', $this->data),
             $this->data['attributes']
-		);
-	}
+        );
+    }
 }

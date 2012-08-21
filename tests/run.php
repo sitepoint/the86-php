@@ -6,7 +6,7 @@ $libraries = array();
 foreach (new DirectoryIterator(dirname(__DIR__) . "/testlib") as $entry)
 {
     if (!$entry->isDot()) $libraries  []= $entry->getPathname();
-	unset($entry); // prevent leak into global scope.
+    unset($entry); // prevent leak into global scope.
 }
 
 // Append test libraries to include path.

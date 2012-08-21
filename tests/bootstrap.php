@@ -36,11 +36,11 @@ Guzzle\Tests\GuzzleTestCase::setMockBasePath(__DIR__ . DIRECTORY_SEPARATOR . 'mo
 
 Guzzle\Tests\GuzzleTestCase::setServiceBuilder(Guzzle\Service\Builder\ServiceBuilder::factory(array(
     'client' => array(
-		'class' => 'The86\The86Client',
-		'params' => array(
-			'domain' => 'the86.example.org',
-			'username' => 'auser',
-			'password' => 'apass',
-		)
+        'class' => 'The86\The86Client',
+        'params' => array(
+            'domain' => 'the86.example.org',
+            'username' => 'auser',
+            'password' => 'apass',
+        )
     )
 )));

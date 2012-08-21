@@ -7,10 +7,10 @@ namespace The86\Command;
  */
 class ShowUser extends \Guzzle\Service\Command\AbstractCommand
 {
-	public function build()
-	{
-		$this->request = $this->client->get(
-			array('users/{user}', $this->data)
-		);
-	}
+    public function build()
+    {
+        $this->request = $this->client->get(
+            array('users/{user}', $this->data)
+        );
+    }
 }

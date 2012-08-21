@@ -14,13 +14,13 @@ class TestCase extends \Guzzle\Tests\GuzzleTestCase
         return $this->client;
     }
 
-	protected function getOnlyMockedRequest($method = null, $path = null)
-	{
-		$requests = $this->getMockedRequests();
-		$count = count($requests);
+    protected function getOnlyMockedRequest($method = null, $path = null)
+    {
+        $requests = $this->getMockedRequests();
+        $count = count($requests);
 
-		if ($count != 1)
-			$this->fail("Expected 1 HTTP request, got $count!");
+        if ($count != 1)
+            $this->fail("Expected 1 HTTP request, got $count!");
 
         $request = $requests[0];
 
@@ -30,7 +30,7 @@ class TestCase extends \Guzzle\Tests\GuzzleTestCase
             $this->fail('$method and $path must both be present or null.');
 
         return $request;
-	}
+    }
 
     protected function assertRequest($method, $path, $request = null)
     {
