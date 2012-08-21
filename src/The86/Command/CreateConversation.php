@@ -5,6 +5,7 @@ namespace The86\Command;
 /**
  * @guzzle site doc="Site slug" required="true"
  * @guzzle attributes doc="Conversation attributes, e.g. content" required="true" type="array"
+ * @guzzle oauth_token doc="OAuth 2 bearer token." required="true"
  */
 class CreateConversation extends \Guzzle\Service\Command\AbstractCommand
 {

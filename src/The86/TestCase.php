@@ -51,4 +51,17 @@ class TestCase extends \Guzzle\Tests\GuzzleTestCase
             $header->__toString()
         );
     }
+
+    protected function assertBearerToken($token, $request = null)
+    {
+        if (!$request) $request = $this->getOnlyMockedRequest();
+
+        if (!($header = $request->getHeader('Authorization')))
+            $this->fail("Missing Authorization header.");
+
+        $this->assertEquals(
+            'Bearer ' . $token,
+            $header->__toString()
+        );
+    }
 }

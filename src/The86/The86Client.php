@@ -46,6 +46,10 @@ class The86Client extends Client
             )
         );
 
+        $client->addSubscriber(
+            new BearerTokenAuthPlugin()
+        );
+
         return $client;
     }
 

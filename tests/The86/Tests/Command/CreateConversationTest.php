@@ -16,12 +16,15 @@ class CreateConversationTest extends TestCase
     {
         $result = $this->client()->getCommand('CreateConversation', array(
             'site' => 'test',
+            'oauth_token' => 'topsecret',
             'attributes' => array(
                 'content' => 'Hello!'
             )
         ))->execute();
 
         $this->assertRequest('POST', '/api/v1/sites/test/conversations');
+        $this->assertBearerToken('topsecret');
+
         $this->assertEquals(2345, $result['id']);
         $this->assertInternalType('array', $result['posts']);
 

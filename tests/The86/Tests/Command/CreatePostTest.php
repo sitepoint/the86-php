@@ -17,12 +17,15 @@ class CreatePostTest extends TestCase
         $result = $this->client()->getCommand('CreatePost', array(
             'site' => 'example',
             'conversation' => 2468,
+            'oauth_token' => 'topsecret',
             'attributes' => array(
                 'content' => 'Hello!'
             )
         ))->execute();
 
         $this->assertRequest('POST', '/api/v1/sites/example/conversations/2468/posts');
+        $this->assertBearerToken('topsecret');
+
         $this->assertEquals(4096, $result['id']);
         $this->assertEquals('Hello!', $result['content']);
         $this->assertFalse($result['is_original']);
