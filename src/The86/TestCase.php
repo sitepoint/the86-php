@@ -64,4 +64,17 @@ class TestCase extends \Guzzle\Tests\GuzzleTestCase
             $header->__toString()
         );
     }
+
+    protected function assertRequestJson($object, $request = null)
+    {
+        if (!$request) $request = $this->getOnlyMockedRequest();
+
+        if (!($body = $request->getBody()))
+            $this->fail('Missing request entity body.');
+
+        $this->assertEquals(
+            json_encode($object),
+            $body->__toString()
+        );
+    }
 }
