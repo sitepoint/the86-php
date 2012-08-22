@@ -13,7 +13,8 @@ class CreateConversation extends \Guzzle\Service\Command\AbstractCommand
     {
         $this->request = $this->client->post(
             array('sites/{site}/conversations', $this->data),
-            $this->data['attributes']
+            null,
+            json_encode($this->data['attributes'])
         );
     }
 }

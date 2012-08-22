@@ -11,7 +11,8 @@ class CreateUser extends \Guzzle\Service\Command\AbstractCommand
     {
         $this->request = $this->client->post(
             'users',
-            $this->data['attributes']
+            null,
+            json_encode($this->data['attributes'])
         );
     }
 }

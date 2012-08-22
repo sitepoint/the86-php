@@ -23,8 +23,10 @@ class CreatePostTest extends TestCase
             )
         ))->execute();
 
-        $this->assertRequest('POST', '/api/v1/sites/example/conversations/2468/posts');
-        $this->assertBearerToken('topsecret');
+        $request = $this->assertRequest('POST',
+            '/api/v1/sites/example/conversations/2468/posts');
+        $this->assertBearerToken('topsecret', $request);
+        $this->assertRequestJson(array('content' => 'Hello!'), $request);
 
         $this->assertEquals(4096, $result['id']);
         $this->assertEquals('Hello!', $result['content']);

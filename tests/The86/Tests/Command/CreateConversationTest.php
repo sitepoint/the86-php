@@ -22,8 +22,9 @@ class CreateConversationTest extends TestCase
             )
         ))->execute();
 
-        $this->assertRequest('POST', '/api/v1/sites/test/conversations');
-        $this->assertBearerToken('topsecret');
+        $request = $this->assertRequest('POST', '/api/v1/sites/test/conversations');
+        $this->assertBearerToken('topsecret', $request);
+        $this->assertRequestJson(array('content' => 'Hello!'), $request);
 
         $this->assertEquals(2345, $result['id']);
         $this->assertInternalType('array', $result['posts']);

@@ -14,7 +14,8 @@ class CreatePost extends \Guzzle\Service\Command\AbstractCommand
     {
         $this->request = $this->client->post(
             array('sites/{site}/conversations/{conversation}/posts', $this->data),
-            $this->data['attributes']
+            null,
+            json_encode($this->data['attributes'])
         );
     }
 }
