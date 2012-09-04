@@ -32,7 +32,6 @@ $conversations = $client->getCommand('ListConversations', array(
 $conversations = $client->getCommand('ListConversations', array(
   'site' => 'example',
   'parameters' => array(
-    'site' => 'example',
     'posts_since' => '2012-08-08T03:26:52Z',
   ),
 ))->execute();
@@ -51,6 +50,7 @@ $user = $client->getCommand('ShowUser', array('id' => $user->id))->execute();
 // Create a Conversation.
 $conversation = $client->getCommand('CreateConversation', array(
   'site' => 'example',
+  'oauth_token' => 'usersoauthtoken',
   'attributes' => array(
     'content' => 'Hello world!',
   ),
@@ -62,6 +62,7 @@ var_dump($post->content_html); // HTML, auto-linkified, etc.
 $post = $client->getCommand('CreatePost', array(
   'site' => 'example',
   'conversation' => 123,
+  'oauth_token' => 'usersoauthtoken',
   'attributes' => array(
     'content' => 'Hello world!',
   ),
