@@ -26,13 +26,13 @@ class CreateConversationTest extends TestCase
         $this->assertBearerToken('topsecret', $request);
         $this->assertRequestJson(array('content' => 'Hello!'), $request);
 
-        $this->assertEquals(2345, $result['id']);
-        $this->assertInternalType('array', $result['posts']);
+        $this->assertEquals(2345, $result->id);
+        $this->assertInternalType('array', $result->posts);
 
-        $posts = $result['posts'];
+        $posts = $result->posts;
         $this->assertEquals(1, count($posts));
-        $this->assertEquals('Hello!', $posts[0]['content']);
-        $this->assertTrue($posts[0]['is_original']);
-        $this->assertEquals('John Citizen', $posts[0]['user']['name']);
+        $this->assertEquals('Hello!', $posts[0]->content);
+        $this->assertTrue($posts[0]->is_original);
+        $this->assertEquals('John Citizen', $posts[0]->user->name);
     }
 }

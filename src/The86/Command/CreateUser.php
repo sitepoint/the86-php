@@ -5,7 +5,7 @@ namespace The86\Command;
 /**
  * @guzzle attributes doc="User attributes, e.g. name" required="true" type="array"
  */
-class CreateUser extends \Guzzle\Service\Command\AbstractCommand
+class CreateUser extends AbstractCommand
 {
     public function build()
     {

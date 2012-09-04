@@ -5,7 +5,7 @@ namespace The86\Command;
 /**
  * @guzzle user doc="The user ID." required="true"
  */
-class ShowUser extends \Guzzle\Service\Command\AbstractCommand
+class ShowUser extends AbstractCommand
 {
     public function build()
     {
