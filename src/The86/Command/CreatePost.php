@@ -12,10 +12,9 @@ class CreatePost extends AbstractCommand
 {
     public function build()
     {
-        $this->request = $this->client->post(
+        $this->request = $this->postJson(
             array('sites/{site}/conversations/{conversation}/posts', $this->data),
-            null,
-            json_encode($this->data['attributes'])
+            $this->data['attributes']
         );
     }
 }
