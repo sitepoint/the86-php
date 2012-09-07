@@ -13,7 +13,7 @@ class CreateConversation extends AbstractCommand
     {
         $this->request = $this->client->post(
             array('sites/{site}/conversations', $this->data),
-            null,
+            array('Content-Type' => 'application/json; charset=utf-8'),
             json_encode($this->data['attributes'])
         );
     }

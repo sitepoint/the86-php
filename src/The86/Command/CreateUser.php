@@ -11,7 +11,7 @@ class CreateUser extends AbstractCommand
     {
         $this->request = $this->client->post(
             'users',
-            null,
+            array('Content-Type' => 'application/json; charset=utf-8'),
             json_encode($this->data['attributes'])
         );
     }
