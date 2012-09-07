@@ -14,7 +14,6 @@ class CreatePost extends AbstractCommand
     {
         $this->request = $this->postJson(
             array('sites/{site}/conversations/{conversation}/posts', $this->data),
-            null,
             $this->data['attributes']
         );
     }

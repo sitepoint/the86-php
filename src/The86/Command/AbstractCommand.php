@@ -56,7 +56,6 @@ abstract class AbstractCommand extends \Guzzle\Service\Command\AbstractCommand
      * body and set Content-Type header
      *
      * @param string|array                       $uri      Resource URI
-     * @param array|Collection                   $headers  HTTP headers
      * @param array|Collection|string|EntityBody $postBody POST body. Can be a string, EntityBody,
      *                                                     or associative array of POST fields to
      *                                                     send in the body of the request.  Prefix
@@ -66,18 +65,11 @@ abstract class AbstractCommand extends \Guzzle\Service\Command\AbstractCommand
      * @return EntityEnclosingRequest
      */
 
-    protected function postJson($uri = null, $headers = null, $postBody = null)
+    protected function postJson($uri = null, $postBody = null)
     {
-        if (!is_array($headers)) {
-            $headers = array();
-        }
-
-        //need to have content-type as json otherwise the86 backend fails
-        $headers['Content-Type'] = 'application/json; charset=utf-8';
-
         return $this->client->post(
             $uri,
-            $headers,
+            array('application/json; charset=utf-8'),
             json_encode($postBody)
         );
     }

@@ -13,7 +13,6 @@ class CreateConversation extends AbstractCommand
     {
         $this->request = $this->postJson(
             array('sites/{site}/conversations', $this->data),
-            null,
             $this->data['attributes']
         );
     }
