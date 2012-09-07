@@ -7,7 +7,7 @@ namespace The86\Command;
  * @guzzle attributes doc="Conversation attributes, e.g. content" required="true" type="array"
  * @guzzle oauth_token doc="OAuth 2 bearer token." required="true"
  */
-class CreateConversation extends \Guzzle\Service\Command\AbstractCommand
+class CreateConversation extends AbstractCommand
 {
     public function build()
     {

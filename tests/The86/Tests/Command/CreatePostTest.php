@@ -28,9 +28,9 @@ class CreatePostTest extends TestCase
         $this->assertBearerToken('topsecret', $request);
         $this->assertRequestJson(array('content' => 'Hello!'), $request);
 
-        $this->assertEquals(4096, $result['id']);
-        $this->assertEquals('Hello!', $result['content']);
-        $this->assertFalse($result['is_original']);
-        $this->assertEquals('John Citizen', $result['user']['name']);
+        $this->assertEquals(4096, $result->id);
+        $this->assertEquals('Hello!', $result->content);
+        $this->assertFalse($result->is_original);
+        $this->assertEquals('John Citizen', $result->user->name);
     }
 }

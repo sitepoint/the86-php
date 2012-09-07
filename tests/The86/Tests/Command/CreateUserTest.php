@@ -24,11 +24,11 @@ class CreateUserTest extends TestCase
         $this->assertBasicAuth('auser', 'apass', $request);
         $this->assertRequestJson(array('name' => 'John Citizen'), $request);
 
-        $this->assertEquals(2048, $result['id']);
-        $this->assertEquals('John Citizen', $result['name']);
+        $this->assertEquals(2048, $result->id);
+        $this->assertEquals('John Citizen', $result->name);
         $this->assertEquals(
             'Gbit5a7iy-nOVdrt-6U8B9nUA4z90hCpcesRSEU38y4',
-            $result['access_tokens'][0]['token']
+            $result->access_tokens[0]->token
         );
     }
 }

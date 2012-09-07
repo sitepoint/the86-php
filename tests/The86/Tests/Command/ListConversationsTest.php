@@ -32,7 +32,7 @@ class ListConversationsTest extends TestCase
 
         // JSON-decoded response data.
         $this->assertEquals(2, count($result));
-        $this->assertEquals(51, $result[0]['id']);
+        $this->assertEquals(51, $result[0]->id);
     }
 
     public function testPostsSince()

@@ -6,7 +6,7 @@ namespace The86\Command;
  * @guzzle site doc="The site slug." required="true"
  * @guzzle parameters doc="URL query parameters." required="false" type="array"
  */
-class ListConversations extends \Guzzle\Service\Command\AbstractCommand
+class ListConversations extends AbstractCommand
 {
     public function build()
     {

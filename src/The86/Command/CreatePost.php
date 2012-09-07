@@ -8,7 +8,7 @@ namespace The86\Command;
  * @guzzle attributes doc="Post attributes, e.g. content" required="true" type="array"
  * @guzzle oauth_token doc="OAuth 2 bearer token." required="true"
  */
-class CreatePost extends \Guzzle\Service\Command\AbstractCommand
+class CreatePost extends AbstractCommand
 {
     public function build()
     {
