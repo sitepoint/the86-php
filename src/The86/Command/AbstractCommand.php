@@ -50,4 +50,35 @@ abstract class AbstractCommand extends \Guzzle\Service\Command\AbstractCommand
     {
         return (bool) count(array_filter(array_keys($array), 'is_string'));
     }
+
+    /**
+     * Wrapper for creating json encoded post response. Automatically encode the
+     * body and set Content-Type header
+     *
+     * @param string|array                       $uri      Resource URI
+     * @param array|Collection                   $headers  HTTP headers
+     * @param array|Collection|string|EntityBody $postBody POST body. Can be a string, EntityBody,
+     *                                                     or associative array of POST fields to
+     *                                                     send in the body of the request.  Prefix
+     *                                                     a value in the array with the @ symbol
+     *                                                     reference a file.
+     *
+     * @return EntityEnclosingRequest
+     */
+
+    protected function postJson($uri = null, $headers = null, $postBody = null)
+    {
+        if (!is_array($headers)) {
+            $headers = array();
+        }
+
+        //need to have content-type as json otherwise the86 backend fails
+        $headers['Content-Type'] = 'application/json; charset=utf-8';
+
+        return $this->client->post(
+            $uri,
+            $headers,
+            json_encode($postBody)
+        );
+    }
 }

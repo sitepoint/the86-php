@@ -9,10 +9,10 @@ class CreateUser extends AbstractCommand
 {
     public function build()
     {
-        $this->request = $this->client->post(
+        $this->request = $this->postJson(
             'users',
             array('Content-Type' => 'application/json; charset=utf-8'),
-            json_encode($this->data['attributes'])
+            $this->data['attributes']
         );
     }
 }
