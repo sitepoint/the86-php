@@ -11,10 +11,9 @@ class CreateConversation extends AbstractCommand
 {
     public function build()
     {
-        $this->request = $this->client->post(
+        $this->request = $this->postJson(
             array('sites/{site}/conversations', $this->data),
-            null,
-            json_encode($this->data['attributes'])
+            $this->data['attributes']
         );
     }
 }
