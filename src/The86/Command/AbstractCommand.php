@@ -69,7 +69,7 @@ abstract class AbstractCommand extends \Guzzle\Service\Command\AbstractCommand
     {
         return $this->client->post(
             $uri,
-            array('application/json; charset=utf-8'),
+            array('Content-Type' => 'application/json; charset=utf-8'),
             json_encode($postBody)
         );
     }
