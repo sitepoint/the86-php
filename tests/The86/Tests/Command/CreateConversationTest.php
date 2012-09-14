@@ -15,14 +15,14 @@ class CreateConversationTest extends TestCase
     public function testCreatingConversation()
     {
         $result = $this->client()->getCommand('CreateConversation', array(
-            'site' => 'test',
+            'group' => 'test',
             'oauth_token' => 'topsecret',
             'attributes' => array(
                 'content' => 'Hello!'
             )
         ))->execute();
 
-        $request = $this->assertRequest('POST', '/api/v1/sites/test/conversations');
+        $request = $this->assertRequest('POST', '/api/v1/groups/test/conversations');
         $this->assertBearerToken('topsecret', $request);
         $this->assertRequestJson(array('content' => 'Hello!'), $request);
 

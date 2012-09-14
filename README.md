@@ -19,18 +19,18 @@ Usage
 // Get a configured client.
 $client = The86\The86Client::factory(array(
   'domain' => 'the86.example.org',
-  'username' => 'your-site-username',
-  'password' => 'your-site-password',
+  'username' => 'your-group-username',
+  'password' => 'your-group-password',
 ));
 
-// List all conversations for a site.
+// List all conversations for a group.
 $conversations = $client->getCommand('ListConversations', array(
-  'site' => 'example',
+  'group' => 'example',
 ))->execute();
 
-// List all recent conversations/posts for a site.
+// List all recent conversations/posts for a group.
 $conversations = $client->getCommand('ListConversations', array(
-  'site' => 'example',
+  'group' => 'example',
   'parameters' => array(
     'posts_since' => '2012-08-08T03:26:52Z',
   ),
@@ -49,7 +49,7 @@ $user = $client->getCommand('ShowUser', array('id' => $user->id))->execute();
 
 // Create a Conversation.
 $conversation = $client->getCommand('CreateConversation', array(
-  'site' => 'example',
+  'group' => 'example',
   'oauth_token' => 'usersoauthtoken',
   'attributes' => array(
     'content' => 'Hello world!',
@@ -60,7 +60,7 @@ var_dump($post->content_html); // HTML, auto-linkified, etc.
 
 // Create a Post.
 $post = $client->getCommand('CreatePost', array(
-  'site' => 'example',
+  'group' => 'example',
   'conversation' => 123,
   'oauth_token' => 'usersoauthtoken',
   'attributes' => array(

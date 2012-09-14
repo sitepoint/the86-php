@@ -9,13 +9,13 @@ class ListConversationsTest extends TestCase
 {
     public function setUp()
     {
-        $this->setMockResponse($this->client(), "sites_example_conversations.http");
+        $this->setMockResponse($this->client(), "groups_example_conversations.http");
     }
 
     public function testListingConversations()
     {
         $command = $this->client()->getCommand('ListConversations', array(
-            'site' => 'example',
+            'group' => 'example',
         ));
 
         $result = $command->execute();
@@ -24,7 +24,7 @@ class ListConversationsTest extends TestCase
         // NOTE: the ?parameters= is a bug in Guzzle's UriTemplate
         // implementation fixed by https://github.com/guzzle/guzzle/pull/123
         $this->assertRegExp(
-            '#^/api/v1/sites/example/conversations(\?parameters=)?$#',
+            '#^/api/v1/groups/example/conversations(\?parameters=)?$#',
             $request->getResource()
         );
 
@@ -38,7 +38,7 @@ class ListConversationsTest extends TestCase
     public function testPostsSince()
     {
         $this->client()->getCommand('ListConversations', array(
-            'site' => 'test',
+            'group' => 'test',
             'parameters' => array(
                 'posts_since' => 'time',
             ),
@@ -47,7 +47,7 @@ class ListConversationsTest extends TestCase
         $this->assertBasicAuth('auser', 'apass');
         $this->assertRequest(
             'GET',
-            '/api/v1/sites/test/conversations?posts_since=time'
+            '/api/v1/groups/test/conversations?posts_since=time'
         );
     }
 }

@@ -29,8 +29,8 @@ class The86ClientTest extends TestCase
     public function testListingConversations()
     {
         $client = $this->getServiceBuilder()->get('client');
-        $this->setMockResponse($client, "sites_example_conversations.http");
-        $request = $client->get('sites/example/conversations');
+        $this->setMockResponse($client, "groups_example_conversations.http");
+        $request = $client->get('groups/example/conversations');
         $response = $request->send();
 
         $this->assertEquals(200, $response->getStatusCode());
