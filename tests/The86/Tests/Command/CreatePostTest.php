@@ -15,7 +15,7 @@ class CreatePostTest extends TestCase
     public function testCreatingPost()
     {
         $result = $this->client()->getCommand('CreatePost', array(
-            'site' => 'example',
+            'group' => 'example',
             'conversation' => 2468,
             'oauth_token' => 'topsecret',
             'attributes' => array(
@@ -24,7 +24,7 @@ class CreatePostTest extends TestCase
         ))->execute();
 
         $request = $this->assertRequest('POST',
-            '/api/v1/sites/example/conversations/2468/posts');
+            '/api/v1/groups/example/conversations/2468/posts');
         $this->assertBearerToken('topsecret', $request);
         $this->assertRequestJson(array('content' => 'Hello!'), $request);
 
